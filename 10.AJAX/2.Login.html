@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Overview</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<style type="text/css">
+		#loginbox{
+			width:240px;
+			height:140px;
+			margin:0px auto;
+			margin-top: 300px;
+		}
+
+		input, button{
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+    <div id="loginbox">
+       <input id="username" type="text" placeholder="your name"/>
+       <br>
+       <input id="password" type="password" placeholder="your password"/>
+       <br>
+       <button>Sign in</button>
+    </div>
+
+    <div id="container"></div>
+    <script type="text/javascript">
+    	$("button").click(function(){
+        
+        var username=$("#username").val(); 
+        var password=$("#password").val(); 
+        
+        $.post("2.server.php",{login:username, password:password}, function(data){
+         if(data!="Wrong login")
+         {
+         	$("#loginbox").hide();
+         	$("#container").html(data);
+         }else
+         {
+         	alert(data);
+         }
+        })
+    	});
+    </script>
+</body>
+</html>
